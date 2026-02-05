@@ -25,7 +25,7 @@ namespace EmployeeDemo
 namespace ExtensionMethodsDemo
 {
     using EmployeeDemo;
-    public static class EmployeeExtension
+    public static class EmployeeExtension 
     {
         public static void DoubleTheAge(this Employee x)
         {
