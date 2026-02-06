@@ -1,3 +1,3 @@
 # Revature-Assignment-1
-This is my first Assignment repository of Revature on GitHub. 
-I am practicing Git commands.
+This repository is created as part of my first Revature assignment.
+It is used to practice and understand Git and GitHub commands.
