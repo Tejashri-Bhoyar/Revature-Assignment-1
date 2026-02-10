@@ -1,6 +1,6 @@
-﻿using EmployeeDemo;
+﻿//Extension Method Exmaples 
+using EmployeeDemo;
 using ExtensionMethodsDemo;
-using Utilities;
 
 namespace MethodsDemo
 {
@@ -57,22 +57,9 @@ namespace MethodsDemo
             NumberOfStudents++;
         }
 
-        public void Promote()
-        {
-            Print();
-
-        }
-
         // public void Print(Student this)
         public void Print()
         {
-            // int x;
-            // int y;
-
-            // if(x == 0) return;
-            // Print();
-
-            //     x--;
             Console.WriteLine($"Name: {this.Name}, Age: {this.Age} Student Count: {NumberOfStudents}");
         }
 
@@ -110,15 +97,7 @@ namespace MethodsDemo
 
     public class Program
     {
-        static void Main()
-        {
-
-            ExpressionBodiedMembersDemo.Demo demo = new ExpressionBodiedMembersDemo.Demo();
-
-            demo.Add(2, 3);
-            demo.Subtract(2, 3);
-        }
-        static void ExtnsionMethodDemo(string[] args)
+        static void Main(string[] args)
         {
             Employee dave = new Employee(1, "Dave", "Smith", 30);
             dave.Print();
@@ -139,6 +118,8 @@ namespace MethodsDemo
 
             var charlie = new Student("Charlie", 26);
             charlie.Print();
+
+
         }
     }
 }
