@@ -1,4 +1,3 @@
-
 using FluentValidation;
 using Microsoft.EntityFrameworkCore;
 
@@ -24,8 +23,11 @@ builder.Services.AddScoped<IValidator<CreateCustomerDTO>, CreateCustomerDTOValid
 builder.Services.AddScoped<IValidator<CreateCustomerDTO>, UKNameCreateCustomerDTOValidator>();
 
 // Add Sql Server
-builder.Services.AddDbContext<CrmDbContext>(options =>
-    options.UseSqlServer(builder.Configuration.GetConnectionString("CrmDbConnection")));
+// builder.Services.AddDbContext<CrmDbContext>(options =>
+//     options.UseSqlServer(builder.Configuration.GetConnectionString("CrmDbConnection")));
+builder.Services.AddDbContextPool<CrmDbContext>(options =>
+    options.UseSqlServer(builder.Configuration.GetConnectionString("CrmDbConnection"))
+    , poolSize: 128);
 
 var app = builder.Build();
 
