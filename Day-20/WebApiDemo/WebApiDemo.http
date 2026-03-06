@@ -1,0 +1,11 @@
+@WebApiDemo_HostAddress = http://localhost:5000
+
+### Post requets for Create Customer DTO
+POST {{WebApiDemo_HostAddress}}/api/v1/customer
+Content-Type: application/json
+
+{
+    "name": "123"
+}
+
+###
