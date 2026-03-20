@@ -2,6 +2,7 @@ using System.ComponentModel.DataAnnotations;
 using AutoMapper;
 
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Caching.Memory;
 
 public class CrmDbContext : DbContext
 {
@@ -37,6 +38,7 @@ public class CustomerService : ICustomerService
 
 public class CustomerDTO
 {
+    public string RequestUrl { get; set; }
     public string FullName { get; set; }
 }
 

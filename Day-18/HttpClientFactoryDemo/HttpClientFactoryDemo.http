@@ -1,0 +1,96 @@
+
+@HttpClientFactoryDemo_HostAddress = http://localhost:5000
+
+GET {{HttpClientFactoryDemo_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
+
+telnet
+
+/1.1
+
+
+
+.AddHttpClient
+
+AddGrpc
+
+double: double-precision floating point number.
+float: single-precision floating point number.
+int32: 32-bit integer.
+int64: 64-bit integer.
+uint32: unsigned 32-bit integer.
+uint64: unsigned 64-bit integer.
+sint32: signed 32-bit integer (efficient for negative numbers).
+sint64: signed 64-bit integer (efficient for negative numbers).
+fixed32: 32-bit fixed point unsigned integer.
+fixed64: 64-bit fixed point unsigned integer.
+sfixed32: signed 32-bit fixed point integer.
+sfixed64: signed 64-bit fixed point integer.
+bool: boolean value (true or false).
+string: a UTF-8 encoded sequence of characters.
+bytes: a sequence of raw bytes, mapping to byte[] in C# or ByteString in Java.
+
+
+protobuf {
+    StuentId int32;
+    name string;
+}
+
+12312312312354365435632141324123
+Ziaullah Khan
+40
+
+{
+    "Name" : "Ziaullah Khan"
+}
+
+binary serialization
+
+weatherforcst.proto
+
+syntax = "proto3";
+
+package weather;
+
+service WeatherService {
+  rpc GetForecast (ForecastRequest) returns (ForecastReply);
+}
+
+message ForecastRequest {
+  string city = 1;
+}
+
+message ForecastReply {
+  string forecast = 1;
+  int32 temperatureC = 2;
+  int32 temperatureF = 3;
+}
+
+
+
+var builder = WebApplication.CreateBuilder(args);
+
+builder.Services.AddGrpc();
+
+var app = builder.Build();
+app.MapGrpcService<WeatherServiceImpl>();
+app.MapGet("/", () => "gRPC service running");
+
+app.Run();
+
+
+public class WeatherServiceImpl : WeatherService.WeatherServiceBase
+{
+    public override Task<ForecastReply> GetForecast(ForecastRequest request, ServerCallContext context)
+    {
+        var reply = new ForecastReply
+        {
+            Forecast = $"Sunny in {request.City}",
+            TemperatureC = 25,
+            TemperatureF = 77
+        };
+        return Task.FromResult(reply);
+    }
+}
